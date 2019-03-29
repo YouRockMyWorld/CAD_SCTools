@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{B29EE8ED-02CC-4647-B056-9B356218C3E6}</ProjectGuid>
+    <ProjectGuid>{3920594C-6BA1-4AE2-930D-B6AADB6B53DE}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>SCTools</RootNamespace>
-    <AssemblyName>SC-Tools</AssemblyName>
+    <RootNamespace>MyNetLoad</RootNamespace>
+    <AssemblyName>MyNetLoad</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
@@ -32,14 +32,11 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <Prefer32Bit>false</Prefer32Bit>
+    <PlatformTarget>x64</PlatformTarget>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="accoremgd">
       <HintPath>..\..\..\Document\CAD.dll\accoremgd.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="AcCui">
-      <HintPath>..\..\..\Document\CAD.dll\AcCui.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="acdbmgd">
@@ -60,15 +57,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CreatePoints.cs" />
-    <Compile Include="CreatePolyline.cs" />
-    <Compile Include="GetPolylinePoints.cs" />
+    <Compile Include="MyNetLoad.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Test.cs" />
-    <Compile Include="Utils.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <PropertyGroup>
-    <PostBuildEvent>copy $(TargetPath) "C:\Users\Administrator\Desktop"</PostBuildEvent>
-  </PropertyGroup>
 </Project>

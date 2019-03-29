@@ -15,13 +15,13 @@ namespace SCTools
     {
         private Document acDoc;
         private Database acCurDb;
-        private Editor acEd;
+        private Editor acDocEd;
 
         public CreatePoints()
         {
             acDoc = Application.DocumentManager.MdiActiveDocument;
             acCurDb = acDoc.Database;
-            acEd = acDoc.Editor;
+            acDocEd = acDoc.Editor;
         }
 
         [CommandMethod("CPoints")]
@@ -36,7 +36,7 @@ namespace SCTools
                     BlockTableRecord acBlkTblRec = acTrans.GetObject(acBlkTbl[BlockTableRecord.ModelSpace], OpenMode.ForWrite) as BlockTableRecord;
 
                     string file = Utils.GetFilePath();
-                    acEd.WriteMessage("打开文件:" + file + "\n");
+                    acDocEd.WriteMessage("打开文件:" + file + "\n");
                     List<Point3d> p_list = Utils.GetPoint3Ds(file);
 
                     foreach(Point3d p in p_list)
@@ -51,18 +51,18 @@ namespace SCTools
                     //acCurDb.Pdsize = 0;
 
                     acDoc.SendStringToExecute("._zoom _e ", true, false, false);
-                    acEd.WriteMessage("命令执行完毕\n");
+                    acDocEd.WriteMessage("命令执行完毕\n");
                     acTrans.Commit();
                     acTrans.Dispose();
                 }
             }
             catch (Autodesk.AutoCAD.Runtime.Exception ex)
             {
-                acEd.WriteMessage(ex.Message);
+                acDocEd.WriteMessage(ex.Message);
             }
             catch (System.Exception ex)
             {
-                acEd.WriteMessage(ex.Message);
+                acDocEd.WriteMessage(ex.Message);
             }
         }
     }

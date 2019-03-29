@@ -11,17 +11,17 @@ using Autodesk.AutoCAD.EditorInput;
 
 namespace SCTools
 {
-    public class CreatePolyLine
+    public class CreatePolyline
     {
         private Document acDoc;
         private Database acCurDb;
-        private Editor acEd;
+        private Editor acDocEd;
 
-        public CreatePolyLine()
+        public CreatePolyline()
         {
             acDoc = Application.DocumentManager.MdiActiveDocument;
             acCurDb = acDoc.Database;
-            acEd = acDoc.Editor;
+            acDocEd = acDoc.Editor;
         }
 
         [CommandMethod("CPL")]
@@ -36,7 +36,7 @@ namespace SCTools
                     BlockTableRecord acBlkTblRec = acTrans.GetObject(acBlkTbl[BlockTableRecord.ModelSpace], OpenMode.ForWrite) as BlockTableRecord;
 
                     string file = Utils.GetFilePath();
-                    acEd.WriteMessage("打开文件:" + file + "\n");
+                    acDocEd.WriteMessage("打开文件:" + file + "\n");
                     List<Point2d> p_list = Utils.GetPoint2Ds(file);
                     using (Polyline acPoly = new Polyline(p_list.Count))
                     {
@@ -51,18 +51,18 @@ namespace SCTools
                         acTrans.AddNewlyCreatedDBObject(acPoly, true);
                     }
                     acDoc.SendStringToExecute("._zoom _e ", true, false, false);
-                    acEd.WriteMessage("命令执行完毕\n");
+                    acDocEd.WriteMessage("命令执行完毕\n");
                     acTrans.Commit();
                     acTrans.Dispose();
                 }
             }
             catch(Autodesk.AutoCAD.Runtime.Exception ex)
             {
-                acEd.WriteMessage(ex.Message);
+                acDocEd.WriteMessage(ex.Message);
             }
             catch(System.Exception ex)
             {
-                acEd.WriteMessage(ex.Message);
+                acDocEd.WriteMessage(ex.Message);
             }
         }
 

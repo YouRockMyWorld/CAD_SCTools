@@ -29,6 +29,24 @@ namespace SCTools
             return path;
         }
 
+        public static string SaveFilePath()
+        {
+            string path = "";
+
+            Microsoft.Win32.SaveFileDialog dlg = new Microsoft.Win32.SaveFileDialog();
+            dlg.DefaultExt = ".text";
+            dlg.Filter = "Text documents (.txt)|*.txt";
+
+            Nullable<bool> result = dlg.ShowDialog();
+
+            if (result == true)
+            {
+                path = dlg.FileName;
+            }
+
+            return path;
+        }
+
         public static List<Point2d> GetPoint2Ds(string path)
         {
             List<Point2d> plist = new List<Point2d>();
